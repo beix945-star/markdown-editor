@@ -1,6 +1,22 @@
 # 纸间 · 在线 Markdown 文档编辑器
 
+[![CI](https://github.com/beix945-star/markdown-editor/actions/workflows/ci.yml/badge.svg)](https://github.com/beix945-star/markdown-editor/actions/workflows/ci.yml)
+
 基于 React、TypeScript 和 Vite 的浏览器文档编辑器。第一版完整源码已实现，可在本机运行。文档保存在当前浏览器，不需要后端或 API 密钥。
+
+## 界面预览
+
+![纸间编辑与预览](docs/images/editor.jpg)
+
+## 技术要点
+
+- React + TypeScript 页面；独立 store 与订阅机制分离数据和视图。
+- 基于文档 ID 的防抖保存，切换时 flush；异常保留内存中的编辑内容。
+- localStorage 数据验证、跨标签页冲突提示与 JSON 备份恢复。
+- react-markdown + remark-gfm 渲染，禁用原始 HTML 与危险链接。
+- Vitest + Testing Library：15 项单元和组件测试；GitHub Actions 自动验证。
+
+[查看架构、设计取舍与三分钟演示步骤](docs/架构与演示.md)。
 
 ## 已实现功能
 
@@ -27,7 +43,7 @@
 
 ## 在其他电脑上运行
 
-使用 Node.js 22.12+ 或更新的兼容 LTS，以及 pnpm：
+使用 Node.js 24 LTS 和 pnpm 11.25.0：
 
 ```bash
 git clone https://github.com/beix945-star/markdown-editor.git
@@ -36,7 +52,7 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-仓库当前为私有，克隆需要已授权的 GitHub 账号。依赖版本记录在 `frontend/pnpm-lock.yaml` 中。
+依赖版本记录在 `frontend/pnpm-lock.yaml` 中。
 
 ## 验证与构建
 
@@ -71,3 +87,5 @@ pnpm dev
 损坏或无法访问的存储不会自动覆盖，当前会话仍可导出。多标签页冲突采用暂停保存并提示的保守策略，没有自动合并。Markdown 导入限制 1 MB，较长文档实时渲染仍可能变慢；尚未进行大规模性能测试。代码块提供排版，不包含语法高亮；图片不自动显示。本站尚未部署到公网。
 
 预览安全策略基于 [react-markdown 官方说明](https://github.com/remarkjs/react-markdown)，未使用执行原始 HTML 的插件。
+
+另一个作品：[工单台全栈系统](https://github.com/beix945-star/ticket-system)。
